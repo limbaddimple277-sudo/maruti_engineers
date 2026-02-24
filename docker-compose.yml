@@ -1,0 +1,48 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: maruti_wp_db
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: ${WORDPRESS_DB_NAME}
+      MYSQL_USER: ${WORDPRESS_DB_USER}
+      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  wordpress:
+    image: wordpress:6.6-php8.2-apache
+    container_name: maruti_wp_app
+    depends_on:
+      - db
+    restart: unless-stopped
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+    ports:
+      - "8080:80"
+    volumes:
+      - wordpress_data:/var/www/html
+
+  phpmyadmin:
+    image: phpmyadmin:5.2
+    container_name: maruti_wp_phpmyadmin
+    depends_on:
+      - db
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "8081:80"
+
+volumes:
+  db_data:
+  wordpress_data:
