@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Maruti Engineers</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <h1 class="brand">Maruti Engineers</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="work.html">Our Work</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <h2>About Maruti Engineers</h2>
+      <p>
+        Maruti Engineers started in 2005 from the small town of <strong>Rajula</strong> with a clear goal:
+        deliver dependable, safe, and professional demolition work.
+      </p>
+      <p>
+        Over the years, we expanded our business to key locations including
+        <strong>Ahmedabad, Gandhinagar, Gandhidham</strong>, and nearby regions.
+        This growth has come from consistent project delivery and trust built with clients.
+      </p>
+      <p>
+        From 2026 onwards, we are also taking up construction projects to provide broader end-to-end services.
+        While our legacy is in demolition, our next chapter is focused on building strong structures and long-term partnerships.
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Maruti Engineers. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
